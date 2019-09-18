@@ -7,13 +7,15 @@ namespace TrabalhoPC1Bim
 {
     class Program
     {
+        private static List<Loja> ListaLoja = new List<Loja>();
         static void Main(string[] args)
         { 
             Boolean exec = true;
-            List<Loja> ListaLoja = new List<Loja>();
+            //List<Loja> ListaLoja = new List<Loja>();
             do
             {
                 Console.WriteLine("\nMenu de Cadastro");
+                Console.WriteLine("Total de produtos cadastrados:{0}", ListaLoja.Count);
                 Console.WriteLine("01 - Incluir");
                 Console.WriteLine("02 - Alterar");
                 Console.WriteLine("03 - Excluir");
@@ -42,13 +44,29 @@ namespace TrabalhoPC1Bim
                         if(busca != null)
                         {
                             Console.WriteLine("O que gostaria de alterar: ");
-                            Console.WriteLine("01 - Produto");
-                            Console.WriteLine("02 - Preço(porcentagem)\n");
+                            Console.WriteLine("01 - Id");
+                            Console.WriteLine("02 - Produto");
+                            Console.WriteLine("03 - Preço(porcentagem)");
+                            Console.WriteLine("04 - Imposto");
+                            Console.WriteLine("05 - Data\n");
                             string opcAlt = Console.ReadLine();
 
                             switch (opcAlt)
                             {
                                 case "01":
+                                    if (busca != null)
+                                    {
+                                        Console.Write("Digite o novo id do produto: ");
+                                        int newidProd = int.Parse(Console.ReadLine());
+                                        busca.AlteraId(newidProd);
+                                        Console.WriteLine("Lista de produtos atualizada: ");
+                                        foreach (Loja obj in ListaLoja)
+                                        {
+                                            Console.WriteLine(obj);
+                                        }
+                                    }
+                                    break;
+                                case "02":
                                     if (busca != null)
                                     {
                                         Console.Write("Digite o novo nome do produto: ");
@@ -61,13 +79,39 @@ namespace TrabalhoPC1Bim
                                         }
                                     }
                                     break;
-                                case "02":
+                                case "03":
                                     if (busca != null)
                                     {
                                         Console.Write("Digite a porcetagem que deseja aumentar:%");
                                         double porcentagem = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                                         busca.AlterarProduto(porcentagem);
                                         Console.WriteLine();
+                                        Console.WriteLine("Lista de produtos atualizada: ");
+                                        foreach (Loja obj in ListaLoja)
+                                        {
+                                            Console.WriteLine(obj);
+                                        }
+                                    }
+                                    break;
+                                case "04":
+                                    if (busca != null)
+                                    {
+                                        Console.Write("Digite o novo imposto do produto: ");
+                                        float newimposProd = float.Parse(Console.ReadLine());
+                                        busca.AlterarImposto(newimposProd);
+                                        Console.WriteLine("Lista de produtos atualizada: ");
+                                        foreach (Loja obj in ListaLoja)
+                                        {
+                                            Console.WriteLine(obj);
+                                        }
+                                    }
+                                    break;
+                                case "05":
+                                    if (busca != null)
+                                    {
+                                        Console.Write("Digite o nova data do produto: ");
+                                        string newdataprod = Console.ReadLine();
+                                        busca.AlterarData(newdataprod);
                                         Console.WriteLine("Lista de produtos atualizada: ");
                                         foreach (Loja obj in ListaLoja)
                                         {
@@ -97,19 +141,31 @@ namespace TrabalhoPC1Bim
                         Console.Write("\nQual o Id do produto a ser excluído:#");
                         int index = int.Parse(Console.ReadLine());
                         Loja busca1 = ListaLoja.Find(x => x.Id == index);
-                        if (busca1 != null)
+
+                        Console.WriteLine("Deseja realmente excluir esse produto 1-SIM | 2-NÃO");
+                        int opcao = int.Parse(Console.ReadLine());
+                        if (opcao == 1)
                         {
-                            ListaLoja.Remove(new Loja() { Id = index });
-                            Console.WriteLine("Lista de produtos atualizada:");
-                            foreach (Loja cadastrados in ListaLoja)
+                            if (busca1 != null)
                             {
-                                Console.WriteLine(cadastrados);
+                                ListaLoja.Remove(new Loja() { Id = index });
+                                Console.WriteLine("Lista de produtos atualizada:");
+                                foreach (Loja cadastrados in ListaLoja)
+                                {
+                                    Console.WriteLine(cadastrados);
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Id do produto não existente!!");
                             }
                         }
-                          else
+                        else
                         {
-                            Console.WriteLine("Id do produto não existente!!");
-                        }
+                            Console.WriteLine("OK comece novamente");
+                        }  
+                        
+                        
                         break;
 
                     case "04":
@@ -120,7 +176,7 @@ namespace TrabalhoPC1Bim
                             });
                             ListaLoja.ForEach(delegate (Loja p)
                             {
-                                Console.WriteLine(String.Format("{0}|{1}|{2}", p.Id, p.Produto, p.Preco));
+                                Console.WriteLine(String.Format("{0} | {1} | {2} | {3} | {4}", p.Id, p.Produto, p.Preco, p.Imposto, p.Data));
                             });
                         break;
 
@@ -163,6 +219,12 @@ namespace TrabalhoPC1Bim
             loja.Produto = Console.ReadLine();
             Console.Write("Preço: ");
             loja.Preco = double.Parse(Console.ReadLine());
+            Console.Write("imposto: ");
+            loja.Imposto = float.Parse(Console.ReadLine());
+            Console.Write("Data: ");
+            loja.Data = Console.ReadLine();
+
+
             return loja;
         }
     }

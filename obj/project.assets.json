@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cellnote\\source\\repos\\TrabalhoPC1Bim\\TrabalhoPC1Bim.csproj",
+      "projectUniqueName": "C:\\Users\\cellnote\\TrabalhoPC1Bim\\TrabalhoPC1Bim.csproj",
       "projectName": "TrabalhoPC1Bim",
-      "projectPath": "C:\\Users\\cellnote\\source\\repos\\TrabalhoPC1Bim\\TrabalhoPC1Bim.csproj",
+      "projectPath": "C:\\Users\\cellnote\\TrabalhoPC1Bim\\TrabalhoPC1Bim.csproj",
       "packagesPath": "C:\\Users\\cellnote\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cellnote\\source\\repos\\TrabalhoPC1Bim\\obj\\",
+      "outputPath": "C:\\Users\\cellnote\\TrabalhoPC1Bim\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

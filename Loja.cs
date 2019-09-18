@@ -10,6 +10,13 @@ namespace TrabalhoPC1Bim
         public int Id { get; set; }
         public string Produto { get; set; }
         public double Preco { get; set; }
+        public string Data { get; set; }
+        public float Imposto { get; set; }
+
+        public void AlteraId(int novoID)
+        {
+            Id = novoID;
+        }
 
         public void AlteraNomeProd(string novoprod)
         {
@@ -20,9 +27,17 @@ namespace TrabalhoPC1Bim
         {
             Preco += Preco * porcentagem / 100.0;
         }
+        public void AlterarData(string novoData)
+        {
+            Data = novoData;
+        }
+        public void AlterarImposto(float novoImposto)
+        {
+            Imposto = novoImposto;
+        }
         public override string ToString()
         {
-            return "#" + Id + "| " + Produto + "| " + Preco.ToString("F2", CultureInfo.InvariantCulture);
+            return "#" + Id + " | " + Produto + " | " + Preco.ToString("F2", CultureInfo.InvariantCulture) + " | " + Imposto + " | " + Data;
         }
         public override bool Equals(object obj)
         {
